@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzf.easyfloat.EasyFloat;
@@ -47,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.bt);
         Button button2 = findViewById(R.id.bt2);
+        TextView tv = findViewById(R.id.tv);
+
+        tv.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
