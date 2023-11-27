@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button button = findViewById(R.id.bt);
+        Button button2 = findViewById(R.id.bt2);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
                     toChoosePhoto();
                 }
 
+            }
+        });
+
+        button2.setOnClickListener(v -> {
+            if (EasyFloat.getFloatView("test") != null && EasyFloat.getFloatView("test").isShown()){
+                EasyFloat.dismiss("test");
             }
         });
     }
@@ -86,24 +93,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openFloatView(Uri uri){
-        if (EasyFloat.getFloatView("test") != null && EasyFloat.getFloatView("test").isShown()){
-            EasyFloat.dismiss("test");
-        } else {
-            EasyFloat.with(MainActivity.this)
-                    .setLayout(R.layout.float_layout, new OnInvokeView() {
-                        @Override
-                        public void invoke(View view) {
-                            ImageView iv = view.findViewById(R.id.iv);
-                            if (uri != null){
-                                iv.setImageURI(uri);
-                            }
+        EasyFloat.with(MainActivity.this)
+                .setLayout(R.layout.float_layout, new OnInvokeView() {
+                    @Override
+                    public void invoke(View view) {
+                        ImageView iv = view.findViewById(R.id.iv);
+                        if (uri != null){
+                            iv.setImageURI(uri);
                         }
-                    })
-                    .setShowPattern(ShowPattern.CURRENT_ACTIVITY)
-                    .setSidePattern(SidePattern.DEFAULT)
-                    .setDragEnable(true)
-                    .setTag("test")
-                    .show();
-        }
+                    }
+                })
+                .setShowPattern(ShowPattern.CURRENT_ACTIVITY)
+                .setSidePattern(SidePattern.DEFAULT)
+                .setDragEnable(true)
+                .setTag("test")
+                .show();
     }
 }
